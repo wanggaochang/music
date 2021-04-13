@@ -32,6 +32,7 @@
 			</view>
 		</view>
 		<!-- mv列表 -->
+		 最近筛选： {{area}}  {{type}}  {{order}}
 		<scroll-view scroll-y @scrolltolower="getMoreMv" style="padding: 10rpx 20rpx 0rpx 20rpx;" :style="{ height: swiperHeight/6*5 + 'px' }">
 			<view v-for="(item,index) in mvList">
 				<view style="padding: 20rpx 0rpx 20rpx 0rpx ;">

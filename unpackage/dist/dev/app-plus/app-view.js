@@ -5202,6 +5202,14 @@ var render = function() {
         ],
         1
       ),
+      _vm._v(
+        "最近筛选： " +
+          _vm._$g(0, "t1-0") +
+          "  " +
+          _vm._$g(0, "t1-1") +
+          "  " +
+          _vm._$g(0, "t1-2")
+      ),
       _c(
         "v-uni-scroll-view",
         {
