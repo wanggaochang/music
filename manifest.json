@@ -1,5 +1,5 @@
 {
-    "name" : "music20210407",
+    "name" : "DiyMusic",
     "appid" : "__UNI__EB946CA",
     "description" : "",
     "versionName" : "1.0.0",
@@ -49,7 +49,12 @@
             "ios" : {},
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {
+                    "gdt" : {},
+                    "csj" : {},
+                    "360" : {},
+                    "ks" : {}
+                }
             },
             "icons" : {
                 "android" : {
