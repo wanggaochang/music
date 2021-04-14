@@ -75,6 +75,12 @@
 				offset: 0
 			}
 		},
+		onPullDownRefresh(){
+			this.searchMv();
+			setTimeout(function () {
+			            uni.stopPullDownRefresh();
+			        }, 1000);
+		},
 		onLoad() {
 			uni.getSystemInfo({
 			        success:  (res) => {     // 需要使用箭头函数，swiper 高度才能设置成功

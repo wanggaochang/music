@@ -17,7 +17,7 @@
 					:style="{ background: 'linear-gradient(to right, rgba(71,161,230,'+x+'), rgba(71,161,230,'+(1-x)+'))' }"
 					>
 						
-						<view slot="header" class="slot-box">
+						<view slot="header" class="slot-box viewContent">
 							{{song.name}}
 						</view>
 						<template slot="footer">
@@ -169,5 +169,12 @@
 </script>
 
 <style>
-
+	.viewContent{
+			display: -webkit-box;
+			-webkit-box-orient:vertical;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			-webkit-line-clamp: 1;
+			width: 450rpx;
+		}
 </style>

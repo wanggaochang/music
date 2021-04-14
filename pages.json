@@ -24,7 +24,8 @@
             {
                 "navigationBarTitleText": "M  V",
                 "navigationBarBackgroundColor": "#10146d",
-                "navigationBarTextStyle":"white"
+                "navigationBarTextStyle":"white",
+				"enablePullDownRefresh": true
             }
             
         }

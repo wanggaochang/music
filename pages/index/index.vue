@@ -15,7 +15,7 @@
 		</view>
 		
 		<!-- 歌单和收藏按钮 -->
-		<scroll-view scroll-y = "true"  :style="{ height: swiperHeight/8*5 + 'px' }" style="margin: 0;">
+		<scroll-view scroll-y = "true" @scrolltolower="getMoreMusic"  :style="{ height: swiperHeight/8*5 + 'px' }" style="margin: 0;">
 			<uni-notice-bar style="margin: 5rpx 0rpx 0rpx 0rpx;padding: 0rpx;" showClose = "true" scrollable="true" single="true" text="下拉可唤出歌单列表,可选取! QQ2208165599!!！"></uni-notice-bar>
 			<uni-card 
 				style="margin: 5rpx 10rpx 0rpx 10rpx;"
@@ -30,7 +30,7 @@
 						:style="{ background: 'linear-gradient(to right, rgba(71,161,230,'+x+'), rgba(71,161,230,'+(1-x)+'))' }"
 							>
 							 <!-- 自定义 header -->
-							<view slot="header" class="slot-box">
+							<view slot="header" class="slot-box viewContent">
 								{{item.name}}
 							</view>
 							<!-- 自定义 body -->
@@ -55,6 +55,7 @@
 			 <uni-card
 			 :title="now==-1 ? '请选择歌曲点击播放' : musicList[now].name"
 			style="margin: 5rpx 10rpx 0rpx 10rpx;"
+			:ellipsis='1'
 			:style="{ background: 'linear-gradient(to right, rgba(71,161,230,'+x+'), rgba(71,161,230,'+(1-x)+'))'}"
 			>
 				<imt-audio autoplay continue :src="now==-1?'':playUrlList[now]"
@@ -135,7 +136,9 @@
 				songsLists: '',
 				addSong: '',
 				listName: '歌曲列表',
-				mvUrl:''
+				mvUrl:'',
+				limit: 10,
+				offset: 0
 			}
 		},
 		components: {
@@ -559,7 +562,9 @@
 				uni.request({
 				    url: 'https://autumnfish.cn/search', 
 				    data: {
-				        keywords: this.keyWord
+				        keywords: this.keyWord,
+						limit: this.limit,
+						offset: this.offset
 				    },
 				    header: {
 				        'custom-header': 'searchMusicBykeywords'
@@ -586,6 +591,11 @@
 				    }
 				});
 				
+			},
+			// 触底加载更多音乐
+			getMoreMusic(){
+				this.limit+=10;
+				this.searchMusic();
 			},
 			// 播放歌曲
 			playMusic(id,index) {
@@ -669,54 +679,14 @@
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+	.viewContent{
+		display: -webkit-box;
+		-webkit-box-orient:vertical;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		-webkit-line-clamp: 1;
+		width: 450rpx;
 	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
-	
-	.input-box{
-		width: 100%;
-		height: 60upx;
-		font-size: 32upx;
-		border: 0;
-		border-radius: 60upx;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		padding: 0 3%;
-		margin: 0;
-		background-color: #ffffff;
-	}
-	
-	.search-box{
-		width: 100%;
-		background-color: rgb(242, 242, 242);
-		padding: 15upx 2.5%;
-		display: flex;
-		justify-content: space-between;
-	}
-	
 	
 	
 </style>
